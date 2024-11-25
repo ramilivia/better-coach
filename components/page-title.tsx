@@ -7,6 +7,6 @@ type PageTitleParams = {
 
 export default function PageTitle({ children }: PageTitleParams) {
   return(
-    <H1 className="mb-10">Products.</H1>
+    <H1 className="mb-12">Products.</H1>
   );
 }

@@ -15,8 +15,8 @@ type ProductCardParams = {
 export default function ProductCard({ slug, imageUrl, title, description, price }: ProductCardParams) {
 
   return (
-    <Card className="h-[410px]" >
-      <CardHeader className="h-2/5 p-0 mb-4">
+    <Card className="h-[410px] border-white" >
+      <CardHeader className="h-2/5 p-2 mb-4">
         <div className="relative w-full h-full">
           <Link href={slug}>
             <Image
@@ -29,17 +29,17 @@ export default function ProductCard({ slug, imageUrl, title, description, price 
         </div>
       </CardHeader>
       <CardContent className="h-2/5">
-        <P className="text-lg text-muted-foreground italic line-clamp-4 max-h-[200px] overflow-hidden text-ellipsis">
+        <P className="text-md text-muted-foreground italic line-clamp-4 max-h-[200px] overflow-hidden text-ellipsis">
           {description}
         </P>
       </CardContent>
       <CardFooter className="flex-wrap justify-between h-1/5">
-        <P className="font-semibold mt-0">
-          {`${price} €`}
-        </P>
-        <Link href={slug}>
+      <Link href={slug}>
           <Button>More Details</Button>
         </Link>
+        <P className="font-semibold mt-0 text-lg">
+          {`${price} €`}
+        </P>
       </CardFooter>
     </Card>
   );
