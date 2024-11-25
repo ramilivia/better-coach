@@ -1,7 +1,7 @@
 "use client"
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useAuth } from "@/lib/auth-context";
 
@@ -14,17 +14,22 @@ type menuItem = {
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { isLoggedIn, logout } = useAuth();
+  const [menuItems, setMenuItems] = useState<menuItem[]>([]);
 
-  const menuItems: menuItem[] = [
-    { href: "/", label: "Products" }
-  ];
+  useEffect(() => {
+    const baseItems: menuItem[] = [
+      { href: "/", label: "Products" }
+    ];
 
-  if (!isLoggedIn) {
-    menuItems.push({ href: "/register", label: "Register" });
-    menuItems.push({ href: "/login", label: "Login" });
-  } else {
-    menuItems.push({ href: "#", label: "Logout", onClick: logout });
-  }
+    if (!isLoggedIn) {
+      baseItems.push({ href: "/register", label: "Register" });
+      baseItems.push({ href: "/login", label: "Login" });
+    } else {
+      baseItems.push({ href: "#", label: "Logout", onClick: logout });
+    }
+
+    setMenuItems(baseItems);
+  }, [isLoggedIn, logout]);
 
   return (
     <div className="border border-secondary-foreground rounded-lg p-4 mb-8 border-1 shadow">
