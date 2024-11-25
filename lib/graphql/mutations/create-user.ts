@@ -7,7 +7,6 @@ export const createUserDocument = gql`
       authToken
       user {
         email
-        password
         provider
       }
     }
