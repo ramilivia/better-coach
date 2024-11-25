@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_USER = gql`
+export const createUserDocument = gql`
   mutation CreateUser($payload: CreateUserPayload!) {
     createUser(payload: $payload) {
       accessToken

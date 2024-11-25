@@ -9,6 +9,7 @@ export default function Navigation() {
 
   const menuItems = [
     { href: "/", label: "Products" },
+    { href: "/register", label: "Register" },
     { href: "/login", label: "Login" },
   ];
 
@@ -16,7 +17,7 @@ export default function Navigation() {
     <div className="border border-secondary-foreground rounded-lg p-4 mb-8 border-1 shadow">
       <div className="flex justify-between items-center">
         <Link href="/">
-          <Image className="max-w-[180px]" src="better-coach-logo-white.svg" alt="Better Coach Logo" width="180" height="40"/>
+          <Image className="max-w-[180px]" src="better-coach-logo-white.svg" alt="Better Coach Logo" width="180" height="40" loading="eager"/>
         </Link>
         {/* Hamburger button */}
         <button 
