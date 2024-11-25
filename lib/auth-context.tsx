@@ -4,7 +4,8 @@ import { createContext, useContext, useState, ReactNode } from "react";
 
 type AuthContextType = {
   accessToken: string | null;
-  refreshToken: string | null;
+  authToken: string | null;
+  isLoggedIn: boolean;
   setSession: (accessToken: string, refreshToken: string) => void;
   logout: () => void;
 }
@@ -13,19 +14,20 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [accessToken, setAccessToken] = useState<string | null>(null);
-  const [refreshToken, setRefreshToken] = useState<string | null>(null);
+  const [authToken, setAuthToken] = useState<string | null>(null);
+  const isLoggedIn = !!accessToken;
 
-  const setSession = (accessToken: string, refreshToken: string) => {
+  const setSession = (accessToken: string, authToken: string) => {
     setAccessToken(accessToken);
-    setRefreshToken(refreshToken);
+    setAuthToken(authToken);
   };
 
   const logout = () => {
     setAccessToken(null);
-    setRefreshToken(null);
+    setAuthToken(null);
   };
   return (
-    <AuthContext.Provider value={{ accessToken, refreshToken, setSession, logout }}>
+    <AuthContext.Provider value={{ accessToken, authToken, isLoggedIn, setSession, logout }}>
       {children}
     </AuthContext.Provider>
   );
