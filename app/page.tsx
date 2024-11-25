@@ -3,8 +3,8 @@ import { GetLandingProductsQuery } from '@/lib/graphql/generated/graphql'
 import { fetchGraphQL } from '@/lib/graphql/fetcher'
 import { getLandingProductsDocument } from '@/lib/graphql/queries/get-landing-products'
 import PageTitle from '@/components/page-title';
-import { Card, CardContent, CardFooter, CardHeader } from '@/components/ui/card';
 import Link from 'next/link';
+import ProductCard from '@/components/product-card';
 
 export default async function Home() {
   const data = await fetchGraphQL<GetLandingProductsQuery>({
@@ -16,33 +16,16 @@ export default async function Home() {
 
   return (
     <div>
-      <PageTitle>Landing Products</PageTitle>
+      <PageTitle>Products</PageTitle>
       <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-8">
         {products.map((product) => (
-          <Link href={`/products/${product.slug!}`} key={product.id}>
-            <Card className="h-[400px]">
-              <CardHeader className="h-60 p-0 mb-4">
-                <div className="relative w-full h-full">
-                  <Image
-                    src={product.images[0].secure_url || ''}
-                    alt={product.title || 'Product Image'}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </CardHeader>
-              <CardContent>
-                <p className="line-clamp-3 max-h-[200px] overflow-hidden text-ellipsis">
-                  {product.description}
-                </p>
-              </CardContent>
-              <CardFooter className="justify-end">
-                <p>
-                  {product.price} EUR
-                </p>
-              </CardFooter>
-            </Card>
-          </Link>
+          <ProductCard
+            key={product.id}
+            slug={`/products/${product.slug}`}
+            imageUrl={product.images[0].secure_url || ''}
+            title={product.title || ''}
+            description={product.description || ''}
+            price={product.price[0]} />
         ))}
       </div>
     </div>
