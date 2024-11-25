@@ -5,10 +5,11 @@ import { SearchHomeProductsQuery } from "@/lib/graphql/generated/graphql";
 import { searchHomeProductsDocument } from "@/lib/graphql/queries/search-home-products";
 import { fetchGraphQL } from "@/lib/graphql/fetcher";
 import { P } from "./ui/typography";
+import Link from "next/link";
 
 export default function SearchBar() {
 
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState<string>('');
   const [products, setProducts] = useState<SearchHomeProductsQuery['searchHomeProducts']>([]);
 
   useEffect(() => {
@@ -34,12 +35,24 @@ export default function SearchBar() {
 
   return(
     <div className="w-96 relative">
-      <Input placeholder="Search" onChange={onInputChange}></Input>
+      <Input 
+        placeholder="Search" 
+        onChange={onInputChange}
+        value={searchTerm}
+      />
       {products.length > 0 && (
-        <ul className="absolute z-10 bg-background w-full border border-primary rounded-md p-3 mt-2">
+        <ul className="absolute z-10 bg-background w-full border rounded-md p-3 mt-2">
           {products.map((product) => (
-            <li key={product.id}>
-              <P>{product.title!}</P>
+            <li 
+              key={product.id} 
+              className="hover:bg-muted rounded-sm transition-colors"
+            >
+              <Link 
+                href={`/products/${product.slug}`} 
+                className="block p-2"
+              >
+                <P>{product.title!}</P>
+              </Link>
             </li>  
           ))}
         </ul>
