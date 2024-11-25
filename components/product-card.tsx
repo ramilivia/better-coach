@@ -33,13 +33,13 @@ export default function ProductCard({ slug, imageUrl, title, description, price 
           {description}
         </P>
       </CardContent>
-      <CardFooter className="justify-between h-1/5">
-        <Link href={slug}>
-          <Button>More Details</Button>
-        </Link>
+      <CardFooter className="flex-wrap justify-between h-1/5">
         <P className="font-semibold mt-0">
           {`${price} €`}
         </P>
+        <Link href={slug}>
+          <Button>More Details</Button>
+        </Link>
       </CardFooter>
     </Card>
   );
