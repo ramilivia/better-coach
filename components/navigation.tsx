@@ -3,20 +3,28 @@ import Link from "next/link";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu";
 import { useState } from "react";
 import Image from "next/image";
+import { useAuth } from "@/lib/auth-context";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { isLoggedIn } = useAuth();
 
   const menuItems = [
-    { href: "/", label: "Products" },
-    { href: "/login", label: "Login" },
+    { href: "/", label: "Products" }
   ];
+
+  if (!isLoggedIn) {
+    menuItems.push({ href: "/register", label: "Register" });
+    menuItems.push({ href: "/login", label: "Login" });
+  } else {
+    menuItems.push({ href: "/logout", label: "Logout" });
+  }
 
   return (
     <div className="border border-secondary-foreground rounded-lg p-4 mb-8 border-1 shadow">
       <div className="flex justify-between items-center">
         <Link href="/">
-          <Image className="max-w-[180px]" src="better-coach-logo-white.svg" alt="Better Coach Logo" width="180" height="40"/>
+          <Image className="max-w-[180px]" src="better-coach-logo-white.svg" alt="Better Coach Logo" width="180" height="40" loading="eager"/>
         </Link>
         {/* Hamburger button */}
         <button 

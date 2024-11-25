@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import { P } from "./ui/typography";
 import { Button } from "./ui/button";
@@ -10,20 +9,26 @@ type ProductCardParams = {
   title: string;
   description: string;
   price: number;
+  priority?: boolean;
 };
 
-export default function ProductCard({ slug, imageUrl, title, description, price }: ProductCardParams) {
+export default function ProductCard({ 
+  slug, 
+  imageUrl, 
+  title, 
+  description, 
+  price,
+}: ProductCardParams) {
 
   return (
     <Card className="h-[410px] border-white" >
       <CardHeader className="h-2/5 p-2 mb-4">
         <div className="relative w-full h-full">
           <Link href={slug}>
-            <Image
+            <img
               src={imageUrl}
               alt={title}
-              fill
-              className="object-cover"
+              className="object-cover rounded-md w-full h-full"
             />
           </Link>
         </div>

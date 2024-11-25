@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/navigation";
 import ApolloClientProvider from "@/lib/graphql/apollo-provider";
+import { AuthProvider } from '@/lib/auth-context'
 
 
 const geistSans = localFont({
@@ -29,14 +30,15 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <div className="m-6">
-          <Navigation></Navigation>
-          <ApolloClientProvider>
-            {children}
-          </ApolloClientProvider>
-        </div>
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <AuthProvider>
+          <div className="m-6">
+            <Navigation></Navigation>
+            <ApolloClientProvider>
+              {children}
+            </ApolloClientProvider>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );
