@@ -25,7 +25,7 @@ export default function SearchBar() {
   const products = searchTerm ? (data?.searchHomeProducts || []) : [];
 
   return(
-    <div className="w-full sm:w-96 mt-6 sm:mt-2 sm:relative">
+    <div className="w-full sm:w-96 mt-6 sm:mt-2 relative">
       <div className="relative">
         <Input 
           placeholder="Search" 
