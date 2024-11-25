@@ -5,11 +5,17 @@ import { useState } from "react";
 import Image from "next/image";
 import { useAuth } from "@/lib/auth-context";
 
+type menuItem = {
+  href?: string;
+  label: string;
+  onClick?: () => void;
+}
+
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn, logout } = useAuth();
 
-  const menuItems = [
+  const menuItems: menuItem[] = [
     { href: "/", label: "Products" }
   ];
 
@@ -17,7 +23,7 @@ export default function Navigation() {
     menuItems.push({ href: "/register", label: "Register" });
     menuItems.push({ href: "/login", label: "Login" });
   } else {
-    menuItems.push({ href: "/logout", label: "Logout" });
+    menuItems.push({ href: "#", label: "Logout", onClick: logout });
   }
 
   return (
@@ -40,13 +46,20 @@ export default function Navigation() {
         <div className="hidden md:block">
           <NavigationMenu>
             <NavigationMenuList>
-              {menuItems.map((item) => (
-                <NavigationMenuItem key={item.href}>
-                  <Link href={item.href} legacyBehavior passHref>
-                    <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              {menuItems.map((item, i) => (
+                <NavigationMenuItem key={i}>
+                  {item.onClick ? (
+                    <button
+                      onClick={item.onClick}
+                      className={navigationMenuTriggerStyle()}
+                    >
                       <span className="text-lg font-semibold">{item.label}</span>
-                    </NavigationMenuLink>
-                  </Link>
+                    </button>
+                  ) : (
+                    <Link href={item.href!} className={navigationMenuTriggerStyle()}>
+                      <span className="text-lg font-semibold">{item.label}</span>
+                    </Link>
+                  )}
                 </NavigationMenuItem>
               ))}
             </NavigationMenuList>
@@ -58,14 +71,24 @@ export default function Navigation() {
       {isMenuOpen && (
         <div className="md:hidden mt-4">
           <nav className="flex flex-col space-y-2 items-end">
-            {menuItems.map((item) => (
-              <Link 
-                key={item.href}
-                href={item.href} 
-                className={navigationMenuTriggerStyle()}
-              >
-                <span className="text-lg font-semibold">{item.label}</span>
-              </Link>
+            {menuItems.map((item, i) => (
+              item.onClick ? (
+                <button
+                  key={i}
+                  onClick={item.onClick}
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <span className="text-lg font-semibold">{item.label}</span>
+                </button>
+              ) : (
+                <Link 
+                  key={i}
+                  href={item.href!} 
+                  className={navigationMenuTriggerStyle()}
+                >
+                  <span className="text-lg font-semibold">{item.label}</span>
+                </Link>
+              )
             ))}
           </nav>
         </div>
