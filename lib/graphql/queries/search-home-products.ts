@@ -1,7 +1,7 @@
 import gql from 'graphql-tag'
 
 export const searchHomeProductsDocument = gql(`
-  query SearchHomeProductsQuery($search: String!) {
+  query SearchHomeProducts($search: String!) {
     searchHomeProducts(search: $search) {
       approved
       attributes
