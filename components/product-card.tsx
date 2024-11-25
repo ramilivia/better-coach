@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
-import { H4, Large, Lead, P } from "./ui/typography";
+import { P } from "./ui/typography";
 import { Button } from "./ui/button";
 import Link from "next/link";
 

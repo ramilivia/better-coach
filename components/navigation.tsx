@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "./ui/navigation-menu";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -15,7 +16,7 @@ export default function Navigation() {
     <div className="border border-secondary-foreground rounded-lg p-4 mb-8 border-1 shadow">
       <div className="flex justify-between items-center">
         <Link href="/">
-          <img className="max-w-[180px]" src="better-coach-logo-white.svg" alt="Better Coach Logo" />
+          <Image className="max-w-[180px]" src="better-coach-logo-white.svg" alt="Better Coach Logo" width="180" height="40"/>
         </Link>
         {/* Hamburger button */}
         <button 

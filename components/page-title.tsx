@@ -1,12 +1,11 @@
-import { ReactNode } from "react"
 import { H1 } from "./ui/typography";
 
 type PageTitleParams = {
-  children: ReactNode
+  title: string
 }
 
-export default function PageTitle({ children }: PageTitleParams) {
+export default function PageTitle({ title }: PageTitleParams) {
   return(
-    <H1 className="mb-12">Products.</H1>
+    <H1 className="mb-12">{`${title}.`}</H1>
   );
 }

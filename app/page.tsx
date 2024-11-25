@@ -1,9 +1,7 @@
-import Image from 'next/image'
 import { GetLandingProductsQuery } from '@/lib/graphql/generated/graphql'
 import { fetchGraphQL } from '@/lib/graphql/fetcher'
 import { getLandingProductsDocument } from '@/lib/graphql/queries/get-landing-products'
 import PageTitle from '@/components/page-title';
-import Link from 'next/link';
 import ProductCard from '@/components/product-card';
 
 export default async function Home() {
@@ -16,7 +14,7 @@ export default async function Home() {
 
   return (
     <div>
-      <PageTitle>Products</PageTitle>
+      <PageTitle title="Products"/>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-12">
         {products.map((product) => (
           <ProductCard
