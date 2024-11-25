@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import ApolloClientProvider from "@/lib/graphql/apollo-provider";
 
 
 const geistSans = localFont({
@@ -32,7 +33,9 @@ export default function RootLayout({
       >
         <div className="m-6">
           <Navigation></Navigation>
-          {children}
+          <ApolloClientProvider>
+            {children}
+          </ApolloClientProvider>
         </div>
       </body>
     </html>

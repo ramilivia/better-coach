@@ -1,5 +1,5 @@
 import { GetLandingProductsQuery } from '@/lib/graphql/generated/graphql'
-import { fetchGraphQL } from '@/lib/graphql/fetcher'
+import { fetchGraphQL } from '@/lib/graphql/server-client'
 import { getLandingProductsDocument } from '@/lib/graphql/queries/get-landing-products'
 import PageTitle from '@/components/page-title';
 import ProductCard from '@/components/product-card';
@@ -15,7 +15,7 @@ export default async function Home() {
 
   return (
     <div>
-      <div className="flex items-center mb-12">
+      <div className="sm:flex items-center mb-12">
         <PageTitle className="mr-10" title="Products"/>
         <SearchBar/>
       </div>
