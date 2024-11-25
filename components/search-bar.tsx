@@ -1,5 +1,5 @@
 "use client"
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Input } from "./ui/input";
 import { SearchHomeProductsQuery } from "@/lib/graphql/generated/graphql";
 import { searchHomeProductsDocument } from "@/lib/graphql/queries/search-home-products";
@@ -11,15 +11,29 @@ import { X } from "lucide-react";
 export default function SearchBar() {
 
   const [searchTerm, setSearchTerm] = useState<string>('');
+  const [debouncedTerm, setDebouncedTerm] = useState<string>('');
   const [products, setProducts] = useState<SearchHomeProductsQuery['searchHomeProducts']>([]);
 
   useEffect(() => {
+    const timer = setTimeout(() => {
+      setDebouncedTerm(searchTerm);
+    }, 300);
+
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
+
+  useEffect(() => {
     const fetchResults = async () => {
+      if (!debouncedTerm) {
+        setProducts([]);
+        return;
+      }
+
       const data = await fetchGraphQL<SearchHomeProductsQuery>({
         document: searchHomeProductsDocument,
         revalidate: 60,
         variables: {
-          search: searchTerm
+          search: debouncedTerm
         }
       });
       console.log(data?.searchHomeProducts);
@@ -27,7 +41,7 @@ export default function SearchBar() {
     };
 
     fetchResults();
-  }, [searchTerm]);
+  }, [debouncedTerm]);
   
 
   const onInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,7 +71,7 @@ export default function SearchBar() {
           </button>
         )}
       </div>
-      {products.length > 0 && (
+      {searchTerm && products.length > 0 && (
         <ul className="absolute z-10 bg-background w-full border rounded-md p-3 mt-2">
           {products.map((product) => (
             <li 
