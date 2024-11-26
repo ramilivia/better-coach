@@ -43,7 +43,7 @@ export default function Login() {
 
     if (data?.userLogin) {
       setSession(data.userLogin.accessToken, data.userLogin.authToken);
-      router.push('/');
+      router.back();
     }
   };
 
