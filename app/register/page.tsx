@@ -54,7 +54,7 @@ export default function Register() {
   };
 
   return (
-      <div className="flex items-center justify-center min-h-[calc(100vh-15rem)] p-4 mt-16">
+      <div className="flex items-center justify-center min-h-[calc(100vh-15rem)] p-4 mt-12">
         <Card className="w-full max-w-sm border-white">
           <CardHeader>
             <CardTitle className="text-2xl">Register</CardTitle>

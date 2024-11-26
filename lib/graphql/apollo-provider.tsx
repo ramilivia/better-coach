@@ -16,8 +16,6 @@ export default function ApolloClientProvider({ children }: PropsWithChildren) {
     }
   });
 
-  console.log('access tokenizer: ', accessToken)
-
   return (
     <ApolloProvider client={client}>
       {children}
