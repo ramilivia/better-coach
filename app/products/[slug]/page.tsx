@@ -41,6 +41,8 @@ function ProductDetailPage() {
               <Image 
                 src={product.images[0].secure_url} 
                 alt={product.title}
+                width={700}
+                height={800}
                 className="w-full rounded-lg object-cover"
               />
             )}
