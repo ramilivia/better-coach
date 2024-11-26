@@ -27,7 +27,7 @@ This is an e-commerce platform built with Next.js 14, TypeScript, and GraphQL. T
   - Real-time product search
   - Cached Results
   - Search suggestions dropdown
-  - Ca
+  - Search Terms debouncing for triggering less requests to the server
 
 ### Technical Stack & Libraries
 
@@ -116,3 +116,4 @@ npm run codegen
 8. Determine if your new page it's gonna be server side or client side
    - In case your component it's client side please use Apollo Client
    - In case your component it's server side please use the Server Fetcher that leverages the caching functionality of Next.js
+9. If your new page requires auththentication please use the Auth Context & and the High Order Compoment for Protecting the route
