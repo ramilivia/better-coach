@@ -31,13 +31,13 @@ This is an e-commerce platform built with Next.js 14, TypeScript, and GraphQL. T
 
 ### Technical Stack & Libraries
 
-- **React 19**: 
-- **Next.js 14**:
+- **React 19**
+- **Next.js 14**
 - **Typescript**:
-- **Tailwind CSS**:
+- **Tailwind CSS**
 - **Shadcn**: shadcn/ui
 - **API**: GraphQL
-- **Data Fetching**: Apollo Client + Next.js 
+- **Data Fetching**: Apollo Client (Browser) + Next.js (Server Components)
 
 
 ### Scaffolding
