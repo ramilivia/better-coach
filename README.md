@@ -41,7 +41,7 @@ This is an e-commerce platform built with Next.js 14, TypeScript, and GraphQL. T
 
 
 ### Scaffolding
-
+```
 📦 better-coach
 ┣ 📂 app
 ┃ ┣ 📄 layout.tsx # Root layout with providers
@@ -92,7 +92,7 @@ This is an e-commerce platform built with Next.js 14, TypeScript, and GraphQL. T
 ┣ 📄 components.json # shadcn/ui configuration
 ┣ 📄 codegen.ts # GraphQL codegen config
 ┗ 📄 tailwind.config.ts # Tailwind CSS config
-
+```
 ### Getting Started
 
 First, run the development server:
