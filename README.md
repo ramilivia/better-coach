@@ -93,10 +93,28 @@ better-coach
 ├── codegen.ts                       # GraphQL codegen config
 └── tailwind.config.ts              # Tailwind CSS config
 ```
-### Getting Started
+### Getting Started & Adding New Functionalities
 
-First, run the development server:
+1. First, run the development server:
 
 ```bash
 npm run dev
-# or
+```
+2. Test the queries and mutations you will use using the Apollo Studio Sandbox
+
+```bash
+  https://studio.apollographql.com/sandbox/explorer
+```
+
+3. Use this Endpoint
+```
+  https://api-dev.shopi.co.ke/graphql
+```
+
+5. Add the queries and mutations you're going to require in the /graphql folder in a Typescript format
+
+6. Run the codegen for generating the typescript
+
+```bash
+npm run codegen
+```
