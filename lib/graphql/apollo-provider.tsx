@@ -1,12 +1,25 @@
 'use client';
 
-import { ApolloProvider } from '@apollo/client';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
 import { PropsWithChildren } from 'react';
-import { apolloClient } from './apollo-client';
+import { useAuth } from '../auth-context';
 
 export default function ApolloClientProvider({ children }: PropsWithChildren) {
+  const { accessToken, authToken } = useAuth();
+
+  const client = new ApolloClient({
+    uri: process.env.NEXT_PUBLIC_API_GRAPHQL,
+    cache: new InMemoryCache(),
+    headers: {
+      accessToken: accessToken || '',
+      authorization: authToken || ''
+    }
+  });
+
+  console.log('access tokenizer: ', accessToken)
+
   return (
-    <ApolloProvider client={apolloClient}>
+    <ApolloProvider client={client}>
       {children}
     </ApolloProvider>
   );

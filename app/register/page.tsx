@@ -1,6 +1,15 @@
 "use client";
 
-import { AuthForm } from "@/components/auth-form";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useAuth } from "@/lib/auth-context";
 import { CreateUserDocument, CreateUserMutation } from "@/lib/graphql/generated/graphql";
 import { useMutation } from "@apollo/client";
@@ -12,14 +21,26 @@ export default function Register() {
   const [error, setError] = useState<string | null>(null);
   const { setSession } = useAuth();
   
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [repeatPassword, setRepeatPassword] = useState('');
+
   const [createUser] = useMutation<CreateUserMutation>(CreateUserDocument, {
     onError: (error) => {
       setError(error.message);
     }
   });
 
-  const handleSubmit = async (email: string, password: string) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (password !== repeatPassword) {
+      setError('Passwords do not match');
+      return;
+    }
+    
     setError(null);
+    
     const { data } = await createUser({
       variables: {
         payload: { email, password, provider: "email" }
@@ -33,13 +54,66 @@ export default function Register() {
   };
 
   return (
-    <AuthForm
-      title="Register"
-      description="Enter your details below to create an account"
-      buttonText="Register"
-      error={error}
-      onSubmit={handleSubmit}
-      footer="By clicking register you agree to our Terms of Service and Privacy Policy"
-    />
+      <div className="flex items-center justify-center min-h-[calc(100vh-15rem)] p-4 mt-16">
+        <Card className="w-full max-w-sm border-white">
+          <CardHeader>
+            <CardTitle className="text-2xl">Register</CardTitle>
+            <CardDescription className="text-white">
+              Enter your details below to create an account
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            {error && (
+              <div className="text-red-500 text-sm mb-4">
+                {error}
+              </div>
+            )}
+            <form onSubmit={handleSubmit} className="grid gap-4">
+              <div className="grid gap-2">
+                <Label htmlFor="email">Email</Label>
+                <Input
+                  id="email"
+                  type="email"
+                  className="w-full p-2 border rounded-md bg-transparent"
+                  placeholder="name@example.com"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="password">Password</Label>
+                <Input
+                  id="password"
+                  type="password"
+                  className="w-full p-2 border rounded-md bg-transparent"
+                  placeholder="Enter your password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="repeatPassword">Repeat Password</Label>
+                <Input
+                  id="repeatPassword"
+                  type="password"
+                  className="w-full p-2 border rounded-md bg-transparent"
+                  placeholder="Repeat your password"
+                  value={repeatPassword}
+                  onChange={(e) => setRepeatPassword(e.target.value)}
+                  required
+                />
+              </div>
+              <Button type="submit" className="w-full mt-4" variant="outline">
+                Register
+              </Button>
+            </form>
+            <CardDescription className="mt-5">
+              By clicking register you agree to our Terms of Service and Privacy Policy
+            </CardDescription>
+          </CardContent>
+        </Card>
+      </div>
   );
 }
