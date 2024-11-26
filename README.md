@@ -126,3 +126,26 @@ This repository it's connected to Vercel, you will find here the live environmen
 ```bash
 https://better-coach-xxuf.vercel.app/
 ```
+
+### Considerations
+Why not using Apollo Client also in the server ?
+
+There is a experimental library, that we wouldn't like to introduce in a enterprise level solution.
+
+The experimental Apollo Client library for App Router was created to solve three main problems:
+
+*** Cache Synchronization
+Regular Apollo Client has no way to properly synchronize its cache between server and client in the App Router
+The experimental version introduces special cache mechanisms (NextSSRInMemoryCache) that can be serialized and transferred from server to client correctly
+
+*** RSC Compatibility
+Standard Apollo Client uses React Context which doesn't work in Server Components
+The experimental version provides getClient() that works directly in Server Components without Context
+This allows for proper data fetching in the server-first approach of App Router
+
+*** Hydration Mismatch
+Regular Apollo Client struggles with Next.js 13+'s streaming and partial hydration
+The experimental version handles the hydration process specifically for App Router's architecture
+It ensures the server-rendered content matches what the client expects during hydration
+In essence, it's an attempt to bridge the architectural gap between Apollo Client's traditional client-side focused approach and Next.js App Router's server-first paradigm.
+
