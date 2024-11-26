@@ -10,6 +10,7 @@ This is an e-commerce platform built with Next.js 14, TypeScript, and GraphQL. T
   - Grid-based product display with images, titles, and pricing
   - Real-time search functionality with dynamic filtering
   - Responsive design for optimal viewing on all devices
+  - Mobile First Design
   - Effective Caching Strategy
 
 - **Product Details**
@@ -117,3 +118,11 @@ npm run codegen
    - In case your component it's client side please use Apollo Client
    - In case your component it's server side please use the Server Fetcher that leverages the caching functionality of Next.js
 9. If your new page requires auththentication please use the Auth Context & and the High Order Compoment for Protecting the route
+
+### Deployments
+
+This repository it's connected to Vercel, you will find here the live environment:
+
+```bash
+https://better-coach-xxuf.vercel.app/
+```
