@@ -96,25 +96,23 @@ better-coach
 ### Getting Started & Adding New Functionalities
 
 1. First, run the development server:
-
 ```bash
 npm run dev
 ```
 2. Test the queries and mutations you will use using the Apollo Studio Sandbox
-
 ```bash
   https://studio.apollographql.com/sandbox/explorer
 ```
-
-3. Use this Endpoint
+3. Use this Endpoint for testing
 ```
   https://api-dev.shopi.co.ke/graphql
 ```
-
 5. Add the queries and mutations you're going to require in the /graphql folder in a Typescript format
-
-6. Run the codegen for generating the typescript
-
+6. Run the codegen for generating the typescript files for your queries & mutations
 ```bash
 npm run codegen
 ```
+7. Add ShadCn components under /components/ui and custom components under /components
+8. Determine if your new page it's gonna be server side or client side
+   - In case your component it's client side please use Apollo Client
+   - In case your component it's server side please use the Server Fetcher that leverages the caching functionality of Next.js
