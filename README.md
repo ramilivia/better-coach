@@ -42,57 +42,56 @@ This is an e-commerce platform built with Next.js 14, TypeScript, and GraphQL. T
 
 ### Scaffolding
 
-better-coach/
-├── app/ # Next.js 14 App Router
-│ ├── layout.tsx # Root layout with providers
-│ ├── page.tsx # Homepage (Product listing)
-│ ├── globals.css # Global styles and Tailwind config
-│ ├── login/ # Authentication routes
-│ │ └── page.tsx # Login form and logic
-│ ├── register/ # User registration
-│ │ └── page.tsx # Registration form and logic
-│ └── products/ # Product routes
-│ └── [slug]/ # Dynamic product pages
-│ └── page.tsx # Individual product view
-│
-├── components/ # Reusable components
-│ ├── ui/ # Base UI components (shadcn/ui)
-│ │ ├── card.tsx # Card variations
-│ │ ├── form.tsx # Form elements
-│ │ ├── typography.tsx # Text components
-│ │ ├── sheet.tsx # Slide-out sheet
-│ │ ├── table.tsx # Table components
-│ │ └── tabs.tsx # Tab components
-│ ├── navigation.tsx # Main navigation bar
-│ ├── product-card.tsx # Product display card
-│ ├── search-bar.tsx # Search with suggestions
-│ └── page-title.tsx # Page title component
-│
-├── lib/ # Core utilities
-│ ├── graphql/ # GraphQL integration
-│ │ ├── generated/ # Auto-generated types
-│ │ ├── queries/ # GraphQL queries
-│ │ │ ├── get-landing-products.ts
-│ │ │ └── get-product-by-slug.ts
-│ │ ├── mutations/ # GraphQL mutations
-│ │ │ ├── user-login.ts
-│ │ │ └── create-user.ts
-│ │ ├── apollo-provider.tsx # Apollo Client setup
-│ │ └── server-client.ts # Server-side GraphQL client
-│ ├── auth-context.tsx # Authentication context
-│ ├── utils.ts # Utility functions
-│ └── require-authentication.ts # Auth guard HOC
-│
-├── public/ # Static assets
-│ └── better-coach-logo-white.svg # Site logo
-│
-└── config/ # Configuration files
-├── package.json # Dependencies and scripts
-├── tsconfig.json # TypeScript configuration
-├── next.config.ts # Next.js configuration
-├── components.json # shadcn/ui configuration
-├── codegen.ts # GraphQL codegen config
-└── tailwind.config.ts # Tailwind CSS config
+📦 better-coach
+┣ 📂 app
+┃ ┣ 📄 layout.tsx # Root layout with providers
+┃ ┣ 📄 page.tsx # Homepage (Product listing)
+┃ ┣ 📄 globals.css # Global styles and Tailwind config
+┃ ┣ 📂 login
+┃ ┃ ┗ 📄 page.tsx # Login form and logic
+┃ ┣ 📂 register
+┃ ┃ ┗ 📄 page.tsx # Registration form and logic
+┃ ┗ 📂 products
+┃ ┗ 📂 [slug]
+┃ ┗ 📄 page.tsx # Individual product view
+┃
+┣ 📂 components
+┃ ┣ 📂 ui
+┃ ┃ ┣ 📄 card.tsx # Card variations
+┃ ┃ ┣ 📄 form.tsx # Form elements
+┃ ┃ ┣ 📄 typography.tsx # Text components
+┃ ┃ ┣ 📄 sheet.tsx # Slide-out sheet
+┃ ┃ ┣ 📄 table.tsx # Table components
+┃ ┃ ┗ 📄 tabs.tsx # Tab components
+┃ ┣ 📄 navigation.tsx # Main navigation bar
+┃ ┣ 📄 product-card.tsx # Product display card
+┃ ┣ 📄 search-bar.tsx # Search with suggestions
+┃ ┗ 📄 page-title.tsx # Page title component
+┃
+┣ 📂 lib
+┃ ┣ 📂 graphql
+┃ ┃ ┣ 📂 generated # Auto-generated types
+┃ ┃ ┣ 📂 queries # GraphQL queries
+┃ ┃ ┃ ┣ 📄 get-landing-products.ts
+┃ ┃ ┃ ┗ 📄 get-product-by-slug.ts
+┃ ┃ ┣ 📂 mutations # GraphQL mutations
+┃ ┃ ┃ ┣ 📄 user-login.ts
+┃ ┃ ┃ ┗ 📄 create-user.ts
+┃ ┃ ┣ 📄 apollo-provider.tsx # Apollo Client setup
+┃ ┃ ┗ 📄 server-client.ts # Server-side GraphQL client
+┃ ┣ 📄 auth-context.tsx # Authentication context
+┃ ┣ 📄 utils.ts # Utility functions
+┃ ┗ 📄 require-authentication.ts # Auth guard HOC
+┃
+┣ 📂 public
+┃ ┗ 📄 better-coach-logo-white.svg # Site logo
+┃
+┣ 📄 package.json # Dependencies and scripts
+┣ 📄 tsconfig.json # TypeScript configuration
+┣ 📄 next.config.ts # Next.js configuration
+┣ 📄 components.json # shadcn/ui configuration
+┣ 📄 codegen.ts # GraphQL codegen config
+┗ 📄 tailwind.config.ts # Tailwind CSS config
 
 ### Getting Started
 
